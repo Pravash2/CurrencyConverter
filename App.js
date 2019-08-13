@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   Keyboard,
+  Alert,
   TouchableWithoutFeedback
 } from "react-native";
 
@@ -37,7 +38,7 @@ export default class App extends React.Component {
     let result = (
       parseFloat(this.state.inputValue) * currencyPerRupee[currency]
     ).toFixed(5);
-    this.setState({ resultValue: result });
+    this.setState({ resultValue: `${result} ${currency}` });
   };
   render() {
     return (
@@ -56,6 +57,7 @@ export default class App extends React.Component {
                 value={this.state.inputValue}
                 onChangeText={inputValue => this.setState({ inputValue })}
               />
+              <Text style={styles.texts}>Ruppee</Text>
             </View>
             <View style={styles.converterButtonContainer}>
               <TouchableOpacity
@@ -113,6 +115,14 @@ export default class App extends React.Component {
                 <Text style={styles.converterButtonText}>Bitty</Text>
               </TouchableOpacity>
             </View>
+            <View style={styles.footerContainer}>
+              <Text style={styles.footer}>
+                CurrencyConverter With React Native
+              </Text>
+              <Text style={{ fontStyle: "italic", fontWeight: "bold" }}>
+                💎Pravash
+              </Text>
+            </View>
           </View>
         </SafeAreaView>
       </TouchableWithoutFeedback>
@@ -148,6 +158,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     height: 70,
     marginTop: 10,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     borderColor: "#c1c1c1",
@@ -174,5 +185,23 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "#fff"
+  },
+  texts: {
+    fontSize: 25,
+    fontWeight: "bold",
+    color: "#fff",
+    borderLeftWidth: 2,
+    borderLeftColor: "#fff",
+    marginLeft: 30,
+    paddingLeft: 20
+  },
+  footerContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  footer: {
+    marginTop: 30
   }
 });
